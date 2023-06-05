@@ -15,4 +15,8 @@ extension Color {
     public static let navigatonBackgroundColor: Color = Color("navigatonBackgroundColor")
     public static let themeColor: Color = Color("themeColor")
     public static let firsatlarBackgroundColor: Color = Color("firsatlarBackgroundColor")
+    public static let buttonBlueColor: Color = Color("buttonBlueColor")
+    
+    //Bottom Sheet "Ürün stok bilgisi" kısmında kullanıyorum
+    public static let secondaryCustomBlueColor: Color = Color("secondaryCustomBlueColor")
 }

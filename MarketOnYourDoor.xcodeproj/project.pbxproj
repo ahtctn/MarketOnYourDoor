@@ -27,6 +27,9 @@
 		7B5D7B7B2A2E464A003A9C7B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B5D7B7A2A2E464A003A9C7B /* HomeView.swift */; };
 		7B5D7B7D2A2E4671003A9C7B /* OpportunitiesRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B5D7B7C2A2E4671003A9C7B /* OpportunitiesRowView.swift */; };
 		7B5D7B802A2E469F003A9C7B /* AsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B5D7B7F2A2E469F003A9C7B /* AsyncImage.swift */; };
+		7B64CBE12A2E5663009CD6F2 /* UnitInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B64CBE02A2E5663009CD6F2 /* UnitInformationView.swift */; };
+		7B64CBE32A2E5780009CD6F2 /* UnitInformationRectangleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B64CBE22A2E5780009CD6F2 /* UnitInformationRectangleView.swift */; };
+		7BDF9D1C2A2E4B2100434A2F /* AddToBasketButtomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDF9D1B2A2E4B2100434A2F /* AddToBasketButtomSheet.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +54,9 @@
 		7B5D7B7A2A2E464A003A9C7B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		7B5D7B7C2A2E4671003A9C7B /* OpportunitiesRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpportunitiesRowView.swift; sourceTree = "<group>"; };
 		7B5D7B7F2A2E469F003A9C7B /* AsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImage.swift; sourceTree = "<group>"; };
+		7B64CBE02A2E5663009CD6F2 /* UnitInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitInformationView.swift; sourceTree = "<group>"; };
+		7B64CBE22A2E5780009CD6F2 /* UnitInformationRectangleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitInformationRectangleView.swift; sourceTree = "<group>"; };
+		7BDF9D1B2A2E4B2100434A2F /* AddToBasketButtomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToBasketButtomSheet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +132,7 @@
 		7B5D7B512A2E440F003A9C7B /* ProductCollectionViewCell */ = {
 			isa = PBXGroup;
 			children = (
+				7BDF9D1A2A2E4B0E00434A2F /* ButtomSheet */,
 				7B5D7B582A2E447C003A9C7B /* ExtraArgumentView.swift */,
 				7B5D7B5A2A2E4495003A9C7B /* ProductStarView.swift */,
 				7B5D7B5C2A2E44AA003A9C7B /* RectangleView.swift */,
@@ -204,6 +211,16 @@
 			path = Core;
 			sourceTree = "<group>";
 		};
+		7BDF9D1A2A2E4B0E00434A2F /* ButtomSheet */ = {
+			isa = PBXGroup;
+			children = (
+				7BDF9D1B2A2E4B2100434A2F /* AddToBasketButtomSheet.swift */,
+				7B64CBE02A2E5663009CD6F2 /* UnitInformationView.swift */,
+				7B64CBE22A2E5780009CD6F2 /* UnitInformationRectangleView.swift */,
+			);
+			path = ButtomSheet;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -279,15 +296,18 @@
 				7B5D7B7D2A2E4671003A9C7B /* OpportunitiesRowView.swift in Sources */,
 				7B5D7B612A2E4505003A9C7B /* ProductCollectionViewCell.swift in Sources */,
 				7B5D7B382A2E4293003A9C7B /* ContentView.swift in Sources */,
+				7B64CBE32A2E5780009CD6F2 /* UnitInformationRectangleView.swift in Sources */,
 				7B5D7B5F2A2E44D0003A9C7B /* ScrollableProductImageView.swift in Sources */,
 				7B5D7B652A2E454E003A9C7B /* GeneralEnums.swift in Sources */,
 				7B5D7B722A2E45A6003A9C7B /* CompanyModel.swift in Sources */,
 				7B5D7B362A2E4293003A9C7B /* MarketOnYourDoorApp.swift in Sources */,
+				7B64CBE12A2E5663009CD6F2 /* UnitInformationView.swift in Sources */,
 				7B5D7B702A2E459F003A9C7B /* ProductModel.swift in Sources */,
 				7B5D7B802A2E469F003A9C7B /* AsyncImage.swift in Sources */,
 				7B5D7B592A2E447C003A9C7B /* ExtraArgumentView.swift in Sources */,
 				7B5D7B4F2A2E43D4003A9C7B /* Color.swift in Sources */,
 				7B5D7B742A2E45AC003A9C7B /* CampaignModel.swift in Sources */,
+				7BDF9D1C2A2E4B2100434A2F /* AddToBasketButtomSheet.swift in Sources */,
 				7B5D7B5D2A2E44AA003A9C7B /* RectangleView.swift in Sources */,
 				7B5D7B7B2A2E464A003A9C7B /* HomeView.swift in Sources */,
 				7B5D7B5B2A2E4495003A9C7B /* ProductStarView.swift in Sources */,

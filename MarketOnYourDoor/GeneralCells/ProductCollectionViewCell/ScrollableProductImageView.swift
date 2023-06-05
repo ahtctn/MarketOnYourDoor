@@ -38,7 +38,7 @@ struct ScrollableProductImageView: View {
     }
     
     func setupAppearance() {
-        UIPageControl.appearance().currentPageIndicatorTintColor = .systemBlue
+        UIPageControl.appearance().currentPageIndicatorTintColor = UIColor(Color.buttonBlueColor)
     }
 }
 

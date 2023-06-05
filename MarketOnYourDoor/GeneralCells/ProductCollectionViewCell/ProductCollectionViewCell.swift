@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ProductCollectionViewCell: View {
     var rowItem: ProductModel
+    @State private var showingBottomSheet: Bool = false
     
     var body: some View {
         ZStack {
@@ -16,9 +17,12 @@ struct ProductCollectionViewCell: View {
             Color.cellBackgroundColor
                 .frame(width: UIScreen.main.bounds.width * 0.47, height: UIScreen.main.bounds.height * 0.5, alignment: .center)
                 .cornerRadius(10)
-                .shadow(color: .black.opacity(1),
-                        radius: 1,
+                .shadow(color: .black.opacity(0.5),
+                        radius: 0.5,
                         x: 0, y: 3)
+                .shadow(color: .black.opacity(0.5),
+                        radius: 0.5,
+                        x: 0, y: -3)
             VStack(alignment: .leading, spacing: 10) {
                 ScrollableProductImageView()
                     .frame(width: UIScreen.main.bounds.width * 0.45, height: UIScreen.main.bounds.height * 0.3, alignment: .center)
@@ -52,20 +56,25 @@ struct ProductCollectionViewCell: View {
                     Text("1000 ₺")
                         .font(.system(size: 18))
                         .fontWeight(.bold)
-                        .foregroundColor(.blue)
+                        .foregroundColor(Color.buttonBlueColor)
                         .padding(.horizontal, 10)
                 }
                 
                 Button {
+                    showingBottomSheet.toggle()
                     print("sepete eklendi")
                 } label: {
                     Text("Sepete Ekle")
                         .foregroundColor(.white)
                 }
+                .sheet(isPresented: $showingBottomSheet) {
+                    AddToBasketButtomSheet(rowItem: rowItem)
+                        .presentationDetents([.medium, .large])
+                }
                 
                 .frame(width: UIScreen.main.bounds.height * 0.21, height: nil, alignment: .center)
                 .buttonStyle(.bordered)
-                .background(.blue)
+                .background(Color.buttonBlueColor)
                 .cornerRadius(10)
             }
             .padding(20)

@@ -69,7 +69,7 @@ struct ProductCollectionViewCell: View {
                 }
                 .sheet(isPresented: $showingBottomSheet) {
                     AddToBasketButtomSheet(rowItem: rowItem)
-                        .presentationDetents([.medium, .large])
+                        .presentationDetents([.medium])
                 }
                 
                 .frame(width: UIScreen.main.bounds.height * 0.21, height: nil, alignment: .center)

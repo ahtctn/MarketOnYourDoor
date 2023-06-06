@@ -11,7 +11,7 @@ struct UnitInformationRectangleView: View {
     var body: some View {
         Rectangle()
             .stroke(Color.rectangleLineColor, lineWidth: 5)
-            .frame(minWidth: 50, maxWidth: 75, minHeight: 50, maxHeight: 75, alignment: .center)
+            .frame(minWidth: 40, maxWidth: 50, minHeight: 40, maxHeight: 50, alignment: .center)
             .cornerRadius(5)
     }
 }

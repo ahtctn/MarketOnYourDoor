@@ -32,7 +32,7 @@ class ProductModel: Identifiable {
 
 struct ProductModelList {
     static let mProductList = [
-        ProductModel(image: UIImage(systemName: "multiply.circle.fill")!, name: "Gofret", description: "Enfes Lezzetli Çikolata Bademli", stockSituation: "Son 3 Gün sınırlı sayıda", rateStar: 3, rateCount: 1000, oldPrice: 1200.0, currentPrice: 1000.0),
+        ProductModel(image: UIImage(systemName: "multiply.circle.fill")!, name: "Mofret", description: "Enfes Lezzetli Çikolata Bademli", stockSituation: "Son 3 Gün sınırlı sayıda", rateStar: 3, rateCount: 1000, oldPrice: 1200.0, currentPrice: 1000.0),
         ProductModel(image: UIImage(systemName: "multiply.circle.fill")!, name: "Gofret", description: "Enfes Lezzetli Çikolata Bademli", stockSituation: "Son 3 Gün sınırlı sayıda", rateStar: 3, rateCount: 1000, oldPrice: 1200.0, currentPrice: 1000.0),
         ProductModel(image: UIImage(systemName: "multiply.circle.fill")!, name: "Gofret", description: "Enfes Lezzetli Çikolata Bademli", stockSituation: "Son 3 Gün sınırlı sayıda", rateStar: 3, rateCount: 1000, oldPrice: 1200.0, currentPrice: 1000.0),
         ProductModel(image: UIImage(systemName: "multiply.circle.fill")!, name: "Gofret", description: "Enfes Lezzetli Çikolata Bademli", stockSituation: "Son 3 Gün sınırlı sayıda", rateStar: 3, rateCount: 1000, oldPrice: 1200.0, currentPrice: 1000.0),

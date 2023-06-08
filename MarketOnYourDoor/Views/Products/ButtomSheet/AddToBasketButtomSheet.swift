@@ -9,10 +9,6 @@ import SwiftUI
 
 struct AddToBasketButtomSheet: View {
     var rowItem: ProductModel
-//    static var adetTapped: Bool = false
-//    static var koliTapped: Bool = false
-//    static var paketTapped: Bool = false
-//    static var paletTapped: Bool = false
     
     @State var selectedButton: ButtonType? = nil
     @State private var quantityOfProducts: Int = 0

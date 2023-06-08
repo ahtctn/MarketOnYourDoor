@@ -10,63 +10,76 @@ struct ContentView: View {
     /// View Properties
     @State private var selectedTab: EnumTab = .Home
     @State private var rotationValue: Double = 0.1
+    @State private var showSideMenu: Bool = false
+    var sideMenuModel: SideMenuModel
     
     var body: some View {
         NavigationView {
-            TabView(selection: $selectedTab) {
-                HomeView(mCompanyList: [CompanyModel]())
+            ZStack {
+                TabView(selection: $selectedTab) {
+                    HomeView(mCompanyList: [CompanyModel]())
+                        
+                        .navigationBarTitleDisplayMode(.inline)
+                        .navigationTitle("Home")
+                        .tabItem {
+                            Image(systemName: "house.fill")
+                            Text("Keşfet")
+                        }
+                        .tag(EnumTab.Home)
                     
-                    .navigationBarTitleDisplayMode(.inline)
-                    .navigationTitle("Home")
-                    .tabItem {
-                        Image(systemName: "house.fill")
-                        Text("Keşfet")
-                    }
-                    .tag(EnumTab.Home)
-                
-                ProductsView()
-                    .navigationBarTitleDisplayMode(.inline)
-                    .navigationTitle("Home")
-                    .tabItem {
-                        Image(systemName: "basket")
-                        Text("Sepetim")
-                    }
-                    .tag(EnumTab.Products)
-            }
-            .background(Color.black)
-            .accentColor(.black)
-            .toolbar {
-                ToolbarItemGroup(placement: .navigationBarLeading) {
-                    Button {
-                        print("left bar button item tapped")
-                    } label: {
-                        Image(systemName: "line.3.horizontal")
-                            .tint(.white)
+                    ProductsView()
+                        .navigationBarTitleDisplayMode(.inline)
+                        .navigationTitle("Home")
+                        .tabItem {
+                            Image(systemName: "basket")
+                            Text("Sepetim")
+                        }
+                        .tag(EnumTab.Products)
+                }
+                .background(Color.black)
+                .accentColor(.black)
+                .toolbar {
+                    ToolbarItemGroup(placement: .navigationBarLeading) {
+                        Button {
+                            print("left bar button item tapped")
+                            showSideMenu.toggle()
+                            
+                        } label: {
+                            Image(systemName: "line.3.horizontal")
+                                .tint(.white)
+                        }
+                        
+                        Image("logo")
+                            .resizable()
+                            .frame(width: 35, height: 35, alignment: .center)
+                            .scaledToFill()
+                            .cornerRadius(10)
+                            .padding(.bottom, 10)
+                            .shadow(color: .black, radius: 10, x: 0, y: 3)
                     }
                     
-                    Image("logo")
-                        .resizable()
-                        .frame(width: 35, height: 35, alignment: .center)
-                        .scaledToFill()
-                        .cornerRadius(10)
-                        .padding(.bottom, 10)
-                        .shadow(color: .black, radius: 10, x: 0, y: 3)
+                    ToolbarItemGroup(placement: .navigationBarTrailing) {
+                        Button {
+                            print("right bar button item tapped")
+                        } label: {
+                            Image(systemName: "bell")
+                                .tint(.white)
+                        }
+                        
+                        Button {
+                            print("My account button tapped")
+                        } label: {
+                            Image(systemName: "person")
+                                .tint(.white)
+                        }
+                    }
                 }
                 
-                ToolbarItemGroup(placement: .navigationBarTrailing) {
-                    Button {
-                        print("right bar button item tapped")
-                    } label: {
-                        Image(systemName: "bell")
-                            .tint(.white)
-                    }
+                GeometryReader { _ in
+                    Spacer()
+                    SideMenuView(sideMenuModelRow: sideMenuModel)
+                        .offset(x: showSideMenu ? 0 : UIScreen.main.bounds.width)
                     
-                    Button {
-                        print("My account button tapped")
-                    } label: {
-                        Image(systemName: "person")
-                            .tint(.white)
-                    }
                 }
             }
         }
@@ -76,7 +89,7 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(sideMenuModel: SideMenuModelList.mSideMenuModelList[0])
     }
 }
 

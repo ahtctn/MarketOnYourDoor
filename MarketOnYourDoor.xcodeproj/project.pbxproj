@@ -13,6 +13,7 @@
 		7B4255ED2A3252A300600024 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 7B4255EC2A3252A300600024 /* Lottie */; };
 		7B4255F22A32546400600024 /* LootieAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4255F12A32546400600024 /* LootieAnimationView.swift */; };
 		7B4255F62A325A7300600024 /* xMark.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B4255F52A325A7300600024 /* xMark.json */; };
+		7B4255F82A33533200600024 /* SegmentedControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4255F72A33533200600024 /* SegmentedControlView.swift */; };
 		7B5D7B362A2E4293003A9C7B /* MarketOnYourDoorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B5D7B352A2E4293003A9C7B /* MarketOnYourDoorApp.swift */; };
 		7B5D7B382A2E4293003A9C7B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B5D7B372A2E4293003A9C7B /* ContentView.swift */; };
 		7B5D7B3A2A2E4294003A9C7B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B5D7B392A2E4294003A9C7B /* Assets.xcassets */; };
@@ -49,6 +50,7 @@
 		7B4255E92A324F9300600024 /* launchScreenAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = launchScreenAnimation.json; path = MarketOnYourDoor/launchScreenAnimation.json; sourceTree = SOURCE_ROOT; };
 		7B4255F12A32546400600024 /* LootieAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LootieAnimationView.swift; sourceTree = "<group>"; };
 		7B4255F52A325A7300600024 /* xMark.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = xMark.json; path = MarketOnYourDoor/xMark.json; sourceTree = SOURCE_ROOT; };
+		7B4255F72A33533200600024 /* SegmentedControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedControlView.swift; sourceTree = "<group>"; };
 		7B5D7B322A2E4293003A9C7B /* MarketOnYourDoor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MarketOnYourDoor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B5D7B352A2E4293003A9C7B /* MarketOnYourDoorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketOnYourDoorApp.swift; sourceTree = "<group>"; };
 		7B5D7B372A2E4293003A9C7B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -279,6 +281,7 @@
 			children = (
 				7B8E479E2A30B5BB003E59F1 /* SideMenuView.swift */,
 				7B4255E62A32223300600024 /* DetailView.swift */,
+				7B4255F72A33533200600024 /* SegmentedControlView.swift */,
 			);
 			path = SideMenuView;
 			sourceTree = "<group>";
@@ -396,6 +399,7 @@
 				7B5D7B742A2E45AC003A9C7B /* CampaignModel.swift in Sources */,
 				7BDF9D1C2A2E4B2100434A2F /* AddToBasketButtomSheet.swift in Sources */,
 				7B5D7B5D2A2E44AA003A9C7B /* RectangleView.swift in Sources */,
+				7B4255F82A33533200600024 /* SegmentedControlView.swift in Sources */,
 				7B5D7B7B2A2E464A003A9C7B /* HomeView.swift in Sources */,
 				7B5D7B5B2A2E4495003A9C7B /* ProductStarView.swift in Sources */,
 				7B5D7B792A2E4626003A9C7B /* ProductsView.swift in Sources */,

@@ -12,8 +12,19 @@ struct SideMenuView: View {
     let sideMenuModelRow: SideMenuModel
     @State private var isPresented: Bool = false
     @State private var isTextFieldVisible: Bool = false
+    
+    @State private var isStockPickerVisible: Bool = false
+    @State private var stockPickerIndex: Int = 0
+    
+    @State private var isStarredProductsPickerVisible: Bool = false
+    @State private var starredProductPickerIndex: Int = 3
+    
     @State private var lowestTextEntered: String = ""
     @State private var highestTextEntered: String = ""
+    
+    @State private var starText: String = ""
+    
+    let starPickerOptions = ["⭐️", "⭐️⭐️", "⭐️⭐️⭐️", "⭐️⭐️⭐️⭐️", "⭐️⭐️⭐️⭐️⭐️"]
     
     var body: some View {
         
@@ -24,7 +35,6 @@ struct SideMenuView: View {
                         .foregroundColor(.black)
                         .font(.system(size: 20, weight: .bold, design: .default))
                         .padding(.top, 20)
-                        
                     
                     Spacer()
                     
@@ -35,26 +45,43 @@ struct SideMenuView: View {
                             .font(.system(size: 20, weight: .bold, design: .default))
                             .padding(.top, 20)
                             .foregroundColor(Color.buttonBlueColor)
-                            
                     }
                 }
                 
                 ForEach(SideMenuModelList.mSideMenuModelList.indices, id: \.self) { index in
-                    Button(action: {
-                        self.isPresented.toggle()
-                    }, label: {
+
+                    Button {
+                        
+                        switch index {
+                        case 0:
+                            withAnimation {
+                                isStockPickerVisible.toggle()
+                            }
+                        case 1:
+                            print("nothing happened")
+                        case 2:
+                            print("nothing happened")
+                        case 3:
+                            withAnimation {
+                                isStarredProductsPickerVisible.toggle()
+                            }
+                        case 4:
+                            withAnimation {
+                                isTextFieldVisible.toggle()
+                            }
+                        default: print("nothing happened")
+                        }
+                        
+                    } label: {
                         HStack(alignment: .center) {
                             VStack(alignment: .leading) {
                                 Text(SideMenuModelList.mSideMenuModelList[index].titleSide)
                                     .foregroundColor(.black)
                                     .font(.system(size: 18, weight: .bold, design: .default))
                                 
-                                Text(SideMenuModelList.mSideMenuModelList[index].subtitleSide)
-                                    .foregroundColor(.secondary)
-                                    .font(.system(size: 13, weight: .regular, design: .default))
-                                    .lineLimit(1)
-                                    .truncationMode(.tail)
+                                subtitleView(for: index)
                             }
+                            
                             Spacer()
                             
                             Image(systemName: "arrow.right")
@@ -64,10 +91,7 @@ struct SideMenuView: View {
                                     CGFloat.infinity
                                 }
                         }
-//                        .sheet(isPresented: $isPresented) {
-//                            DetailView(item: SideMenuModelList.mSideMenuModelList[index])
-//                        }
-                    })
+                    }
                     .overlay {
                         GeometryReader { geometry in
                             Rectangle()
@@ -75,11 +99,26 @@ struct SideMenuView: View {
                                 .frame(width: geometry.size.width, height: 0)
                         }
                     }
-                    .onTapGesture {
-                        if index == 4 { // Check if it's the 5th cell
-                            isTextFieldVisible.toggle() // Toggle the visibility of the TextField
-                            print("En yüksek fiyat: \(highestTextEntered)\nEn düşük fiyat: \(lowestTextEntered)")
+                    if index == 0 && isStockPickerVisible {
+                        Picker(selection: $stockPickerIndex) {
+                            Text("Sadece Stokta Olanlar").tag(0)
+                            Text("Stoktan Kalkanlar").tag(1)
+                            Text("Yakında Stokta").tag(2)
+                        } label: {
+                            Text("Stok Durumu")
                         }
+                    }
+                    
+                    if index == 3 && isStarredProductsPickerVisible {
+                        Picker(selection: $starredProductPickerIndex, label: Text("Derece: ")) {
+                            ForEach(starPickerOptions.indices, id: \.self) { index in
+                                Text(starPickerOptions[index]).tag(index)
+                            }
+                        }
+                        
+                        .padding(.horizontal)
+                        .transition(.move(edge: .bottom))
+                        .animation(.easeInOut(duration: 0.2))
                     }
                     
                     if index == 4 && isTextFieldVisible { // Display the TextField for the 5th cell
@@ -88,14 +127,35 @@ struct SideMenuView: View {
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
                                 .keyboardType(UIKeyboardType.asciiCapableNumberPad)
                                 .padding()
-                                
+                                .offset(y: isTextFieldVisible ? 0 : -100) // Animate the offset of the TextField
                             
                             TextField("En yüksek fiyat", text: $highestTextEntered)
                                 .keyboardType(UIKeyboardType.asciiCapableNumberPad)
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
                                 .padding()
+                                .offset(y: isTextFieldVisible ? 0 : -100) // Animate the offset of the TextField
+                            
+                            if Int(lowestTextEntered) ?? 0 > Int(highestTextEntered) ?? 0 || Int(lowestTextEntered) ?? 0 == Int(highestTextEntered) ?? 0 {
+                                Text("En düşük fiyat en büyük fiyattan daha büyük olamaz")
+                                    .lineLimit(2)
+                                    .foregroundColor(Color.red)
+                                    .font(.system(size: 12, weight: .regular, design: .default))
+                                    .padding(.trailing)
+                            }
                             
                             Spacer()
+                        }
+                        .offset(y: isTextFieldVisible ? 0 : UIScreen.main.bounds.height + 100) // Set final offset for animation
+                        .onAppear {
+                            withAnimation(.easeInOut(duration: 2.0)) {
+                                isTextFieldVisible = true
+                            }
+                        }
+                        
+                        .onDisappear {
+                            withAnimation(.easeInOut(duration: 2.0)) {
+                                isTextFieldVisible = false
+                            }
                         }
                     }
                 }
@@ -123,6 +183,49 @@ struct SideMenuView: View {
             }
         }
         .shadow(color: .black, radius: 5, x: 0, y: 3)
+    }
+    
+    @ViewBuilder
+    private func subtitleView(for index: Int) -> some View {
+        if index == 4 && lowestTextEntered != "" && highestTextEntered != "" {
+            Text("\(lowestTextEntered) ₺ - \(highestTextEntered) ₺")
+                .foregroundColor(.secondary)
+                .font(.system(size: 13, weight: .regular, design: .default))
+                .lineLimit(1)
+                .truncationMode(.tail)
+        } else if index == 3 {
+            VStack(alignment: .leading) {
+                
+                Text(getStarText())
+                    .foregroundColor(.secondary)
+                    .font(.system(size: 13, weight: .regular, design: .default))
+                    .lineLimit(1)
+                    .truncationMode(.tail)
+            }
+        } else {
+            Text(SideMenuModelList.mSideMenuModelList[index].subtitleSide)
+                .foregroundColor(.secondary)
+                .font(.system(size: 13, weight: .regular, design: .default))
+                .lineLimit(1)
+                .truncationMode(.tail)
+        }
+    }
+    
+    private func getStarText() -> String {
+        switch starPickerOptions[starredProductPickerIndex] {
+            case "⭐️":
+                return "Bir yıldız ve üstü ürünler"
+            case "⭐️⭐️":
+                return "İki yıldız ve üstü ürünler"
+            case "⭐️⭐️⭐️":
+                return "Üç yıldız ve üstü ürünler"
+            case "⭐️⭐️⭐️⭐️":
+                return "Dört yıldız ve üstü ürünler"
+            case "⭐️⭐️⭐️⭐️⭐️":
+                return "Beş yıldızlı ürünler"
+            default:
+                return "eneme"
+            }
     }
 }
 

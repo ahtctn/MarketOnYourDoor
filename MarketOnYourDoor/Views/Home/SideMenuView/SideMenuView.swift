@@ -14,53 +14,44 @@ struct SideMenuView: View {
     @State private var isTextFieldVisible: Bool = false
     
     @State private var isStockPickerVisible: Bool = false
-    @State private var stockPickerIndex: Int = 0
+    @State private var stockPickerIndex: StockStatus = .onlyInStock
     
     @State private var isStarredProductsPickerVisible: Bool = false
-    @State private var starredProductPickerIndex: Int = 3
+    @State private var starredProductPickerIndex: StarRating = .oneStar
     
     @State private var lowestTextEntered: String = ""
     @State private var highestTextEntered: String = ""
     
-    @State private var starText: String = ""
+    @State private var isProductGroupsVisible: Bool = false
+    @State private var productGroupsIndex: ProductGroup = .group1
     
+    @State private var isProductSupplementGroups: Bool = false
+    @State private var productSupplementGroupsIndex: ProductSupplementGroup = .group1
+
+    @State private var starText: String = ""
     let starPickerOptions = ["⭐️", "⭐️⭐️", "⭐️⭐️⭐️", "⭐️⭐️⭐️⭐️", "⭐️⭐️⭐️⭐️⭐️"]
     
     var body: some View {
-        
         ZStack {
             List {
-                HStack(alignment: .center, spacing: 10) {
-                    Text("Filtreleme")
-                        .foregroundColor(.black)
-                        .font(.system(size: 20, weight: .bold, design: .default))
-                        .padding(.top, 20)
-                    
-                    Spacer()
-                    
-                    Button {
-                        print("Temizle Button Tapped")
-                    } label: {
-                        Text("Temizle")
-                            .font(.system(size: 20, weight: .bold, design: .default))
-                            .padding(.top, 20)
-                            .foregroundColor(Color.buttonBlueColor)
-                    }
-                }
+                SideMenuHeaderTitles()
                 
                 ForEach(SideMenuModelList.mSideMenuModelList.indices, id: \.self) { index in
 
                     Button {
-                        
                         switch index {
                         case 0:
                             withAnimation {
                                 isStockPickerVisible.toggle()
                             }
                         case 1:
-                            print("nothing happened")
+                            withAnimation {
+                                isProductGroupsVisible.toggle()
+                            }
                         case 2:
-                            print("nothing happened")
+                            withAnimation {
+                                isProductSupplementGroups.toggle()
+                            }
                         case 3:
                             withAnimation {
                                 isStarredProductsPickerVisible.toggle()
@@ -69,9 +60,8 @@ struct SideMenuView: View {
                             withAnimation {
                                 isTextFieldVisible.toggle()
                             }
-                        default: print("nothing happened")
+                        default: print("Bir sorun var")
                         }
-                        
                     } label: {
                         HStack(alignment: .center) {
                             VStack(alignment: .leading) {
@@ -100,28 +90,42 @@ struct SideMenuView: View {
                         }
                     }
                     if index == 0 && isStockPickerVisible {
-                        Picker(selection: $stockPickerIndex) {
-                            Text("Sadece Stokta Olanlar").tag(0)
-                            Text("Stoktan Kalkanlar").tag(1)
-                            Text("Yakında Stokta").tag(2)
-                        } label: {
-                            Text("Stok Durumu")
+                        Picker(selection: $stockPickerIndex, label: Text("Stok")) {
+                            ForEach(StockStatus.allCases, id: \.self) { group in
+                                Text(group.labelText).tag(group)
+                            }
+                        }
+                    }
+                    
+                    if index == 1 && isProductGroupsVisible {
+                        Picker(selection: $productGroupsIndex, label: Text("Grup")) {
+                            ForEach(ProductGroup.allCases, id: \.self) { group in
+                                Text(group.labelText).tag(group)
+                            }
+                        }
+                    }
+                    
+                    if index == 2 && isProductSupplementGroups {
+                        Picker(selection: $productSupplementGroupsIndex, label: Text("Ek")) {
+                            ForEach(ProductSupplementGroup.allCases, id: \.self) { group in
+                                Text(group.labelText).tag(group)
+                            }
                         }
                     }
                     
                     if index == 3 && isStarredProductsPickerVisible {
-                        Picker(selection: $starredProductPickerIndex, label: Text("Derece: ")) {
-                            ForEach(starPickerOptions.indices, id: \.self) { index in
-                                Text(starPickerOptions[index]).tag(index)
+                        Picker(selection: $starredProductPickerIndex, label: Text("Derece")) {
+                            ForEach(StarRating.allCases, id: \.self) { group in
+                                Text(group.labelText).tag(group)
                             }
                         }
                         
                         .padding(.horizontal)
                         .transition(.move(edge: .bottom))
-                        .animation(.easeInOut(duration: 0.2))
+                        .withAnimation(.easeInOut(duration: 0.2))
                     }
                     
-                    if index == 4 && isTextFieldVisible { // Display the TextField for the 5th cell
+                    if index == 4 && isTextFieldVisible {
                         VStack {
                             TextField("En düşük fiyat", text: $lowestTextEntered)
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -163,70 +167,90 @@ struct SideMenuView: View {
             .frame(minWidth: 300, maxWidth: 350)
             .background(.white)
             
-            VStack {
-                Spacer()
-                Button {
-                    // "Ürünleri Listele" Button'ına tıklandığında yapılacak işlemler
-                    print("Ürünleri Listele Button Tapped")
-                } label: {
-                    Text("ÜRÜNLERİ LİSTELE")
-                        .font(.system(size: 20, weight: .bold, design: .default))
-                        .padding(.leading, 70)
-                        .padding(.trailing, 70)
-                        .padding(.top, 20)
-                        .padding(.bottom, 20)
-                        .foregroundColor(Color.white)
-                        .background(Color.buttonBlueColor)
-                        .cornerRadius(20)
-                    
-                }
-            }
+            SideMenuListProductsButton()
         }
         .shadow(color: .black, radius: 5, x: 0, y: 3)
     }
     
     @ViewBuilder
     private func subtitleView(for index: Int) -> some View {
-        if index == 4 && lowestTextEntered != "" && highestTextEntered != "" {
-            Text("\(lowestTextEntered) ₺ - \(highestTextEntered) ₺")
-                .foregroundColor(.secondary)
-                .font(.system(size: 13, weight: .regular, design: .default))
-                .lineLimit(1)
-                .truncationMode(.tail)
-        } else if index == 3 {
+        switch index {
+        case SideMenuEnum.stock.rawValue:
             VStack(alignment: .leading) {
-                
-                Text(getStarText())
+                Text("\(getStockLabelText())")
                     .foregroundColor(.secondary)
                     .font(.system(size: 13, weight: .regular, design: .default))
                     .lineLimit(1)
                     .truncationMode(.tail)
             }
-        } else {
-            Text(SideMenuModelList.mSideMenuModelList[index].subtitleSide)
-                .foregroundColor(.secondary)
-                .font(.system(size: 13, weight: .regular, design: .default))
-                .lineLimit(1)
-                .truncationMode(.tail)
+        case SideMenuEnum.productGroups.rawValue:
+            VStack(alignment: .leading) {
+                Text("\(productGroupLabelText())")
+                    .foregroundColor(.secondary)
+                    .font(.system(size: 13, weight: .regular, design: .default))
+                    .lineLimit(1)
+                    .truncationMode(.tail)
+            }
+        case SideMenuEnum.productSupplementGroups.rawValue:
+            VStack(alignment: .leading) {
+                Text("\(productSupplementGroupLabelText())")
+                    .foregroundColor(.secondary)
+                    .font(.system(size: 13, weight: .regular, design: .default))
+                    .lineLimit(1)
+                    .truncationMode(.tail)
+            }
+        case SideMenuEnum.starredProducts.rawValue:
+            VStack(alignment: .leading) {
+                Text("\(getStarText())")
+                    .foregroundColor(.secondary)
+                    .font(.system(size: 13, weight: .regular, design: .default))
+                    .lineLimit(1)
+                    .truncationMode(.tail)
+            }
+        case SideMenuEnum.textFields.rawValue:
+            if lowestTextEntered != "" && highestTextEntered != "" {
+                Text("\(lowestTextEntered) ₺ - \(highestTextEntered) ₺")
+                    .foregroundColor(.secondary)
+                    .font(.system(size: 13, weight: .regular, design: .default))
+                    .lineLimit(1)
+                    .truncationMode(.tail)
+            } else {
+                EmptyView() // Varsayılan bir dönüş değeri
+            }
+        default:
+            EmptyView() // Varsayılan bir dönüş değeri
         }
     }
     
     private func getStarText() -> String {
-        switch starPickerOptions[starredProductPickerIndex] {
-            case "⭐️":
-                return "Bir yıldız ve üstü ürünler"
-            case "⭐️⭐️":
-                return "İki yıldız ve üstü ürünler"
-            case "⭐️⭐️⭐️":
-                return "Üç yıldız ve üstü ürünler"
-            case "⭐️⭐️⭐️⭐️":
-                return "Dört yıldız ve üstü ürünler"
-            case "⭐️⭐️⭐️⭐️⭐️":
-                return "Beş yıldızlı ürünler"
-            default:
-                return "eneme"
-            }
+        
+        if starredProductPickerIndex == .oneStar {
+            return "Bir yıldız ve üzeri ürünler"
+        } else if starredProductPickerIndex == .twoStars {
+            return "İki yıldız ve üzeri ürünler"
+        } else if starredProductPickerIndex == .threeStars {
+            return "Üç yıldız ve üzeri ürünler"
+        } else if starredProductPickerIndex == .fourStars {
+            return "Dört yıldız ve üzeri ürünler"
+        } else if starredProductPickerIndex == .fiveStars {
+            return "Beş yıldızlı ürünler"
+        } else {
+            return "bir sorun var"
+        }
     }
+
+    private func productGroupLabelText() -> String {
+        return productGroupsIndex.labelText
+    }
+        
+    private func productSupplementGroupLabelText() -> String {
+        return productSupplementGroupsIndex.labelText
+    }
+    
+    private func getStockLabelText() -> String {
+        return stockPickerIndex.labelText
+    }
+
 }
 
 struct SideMenuView_Previews: PreviewProvider {

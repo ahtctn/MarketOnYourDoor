@@ -19,4 +19,17 @@ extension Color {
     
     //Bottom Sheet "Ürün stok bilgisi" kısmında kullanıyorum
     public static let secondaryCustomBlueColor: Color = Color("secondaryCustomBlueColor")
+    
+    //MARK: BRAND COLORS
+    public static let nestleColor: Color = Color("nestleColor")
+    public static let mondelezColor: Color = Color("mondelezColor")
+    public static let uludagIcecekColor: Color = Color("uludagIcecekColor")
+    public static let imperialTaboccoColor: Color = Color("imperialTaboccoColor")
+    public static let JTITobaccoColor: Color = Color("JTITobaccoColor")
+    public static let ecazcibasiColor: Color = Color("eczacibasiColor")
+    public static let haribboColor: Color = Color("haribboColor")
+    public static let solenColor: Color = Color("solenColor")
+    public static let meyIckiColor: Color = Color("meyIckiColor")
+    public static let efesColor: Color = Color("efesColor")
+    
 }

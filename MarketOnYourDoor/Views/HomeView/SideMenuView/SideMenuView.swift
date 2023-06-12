@@ -122,7 +122,7 @@ struct SideMenuView: View {
                         
                         .padding(.horizontal)
                         .transition(.move(edge: .bottom))
-                        .withAnimation(.easeInOut(duration: 0.2))
+                        //.withAnimation(.easeInOut(duration: 0.2))
                     }
                     
                     if index == 4 && isTextFieldVisible {
@@ -223,7 +223,6 @@ struct SideMenuView: View {
     }
     
     private func getStarText() -> String {
-        
         if starredProductPickerIndex == .oneStar {
             return "Bir yıldız ve üzeri ürünler"
         } else if starredProductPickerIndex == .twoStars {

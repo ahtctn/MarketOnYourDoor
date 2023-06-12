@@ -13,6 +13,7 @@ struct ContentView: View {
     @State private var selectedTab: EnumTab = .Home
     @State private var rotationValue: Double = 0.1
     @State private var showSideMenu: Bool = false
+    
     var sideMenuModel: SideMenuModel
     
     var body: some View {
@@ -31,21 +32,51 @@ struct ContentView: View {
                                 }
                                 .tag(EnumTab.Home)
                             
+                            BrandsView()
+                                .navigationBarTitleDisplayMode(.inline)
+                                .navigationTitle("Brands")
+                                .tabItem {
+                                    Image(systemName: "briefcase")
+                                    Text("Markalar")
+                                }
+                                .tag(EnumTab.Brands)
+                            
                             ProductsView()
                                 .navigationBarTitleDisplayMode(.inline)
-                                .navigationTitle("Home")
+                                .navigationTitle("Basket")
                                 .tabItem {
                                     Image(systemName: "basket")
                                     Text("Sepetim")
                                 }
                                 .tag(EnumTab.Products)
+                            
+                            ListsView()
+                                .navigationBarTitleDisplayMode(.inline)
+                                .navigationTitle("Lists")
+                                .tabItem {
+                                    Image(systemName: "heart")
+                                    Text("Listelerim")
+                                }
+                                .tag(EnumTab.MyList)
+                            
+                            SettingsView()
+                                .navigationBarTitleDisplayMode(.inline)
+                                .navigationTitle("Settings")
+                                .tabItem {
+                                    Image(systemName: "gear")
+                                    Text("Ayarlar")
+                                }
+                                .tag(EnumTab.Settings)
+                            
+                            
                         }
                         .background(Color.black)
                         .accentColor(.black)
                         .toolbar {
                             ToolbarItemGroup(placement: .navigationBarLeading) {
+                                //MARK: SIDE MENU BUTTON
                                 Button {
-                                    print("left bar button item tapped")
+                                    print("side menu button")
                                     showSideMenu.toggle()
                                     
                                 } label: {
@@ -58,24 +89,18 @@ struct ContentView: View {
                                         
                                     }
                                 }
-                                
-                                Image("logo")
-                                    .resizable()
-                                    .frame(width: 35, height: 35, alignment: .center)
-                                    .scaledToFill()
-                                    .cornerRadius(10)
-                                    .padding(.bottom, 10)
-                                    .shadow(color: .black, radius: 5, x: 0, y: 3)
+                                AppLogoView()
                             }
                             
                             ToolbarItemGroup(placement: .navigationBarTrailing) {
+                                //MARK: NOTIFICATION BUTTON
                                 Button {
                                     print("right bar button item tapped")
                                 } label: {
                                     Image(systemName: "bell")
                                         .tint(.white)
                                 }
-                                
+                                //MARK: ACCOUNT BUTTON
                                 Button {
                                     print("My account button tapped")
                                 } label: {
@@ -84,7 +109,6 @@ struct ContentView: View {
                                 }
                             }
                         }
-                        
                         GeometryReader { _ in
                             Spacer()
                             SideMenuView(sideMenuModelRow: sideMenuModel)

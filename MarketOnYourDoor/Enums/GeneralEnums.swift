@@ -14,6 +14,8 @@ enum EnumTab: String, CaseIterable {
     case Products = "Services"
     case MyBasket = "Partners"
     case MyList = "Activity"
+    case Settings = "Settings"
+    case Brands = "Brands"
     
     var systemImage: String {
         switch self {
@@ -25,6 +27,10 @@ enum EnumTab: String, CaseIterable {
             return "hand.raised"
         case .MyList:
             return "bell"
+        case .Settings:
+            return "gear"
+        case .Brands:
+            return "briefcase"
         }
     }
     

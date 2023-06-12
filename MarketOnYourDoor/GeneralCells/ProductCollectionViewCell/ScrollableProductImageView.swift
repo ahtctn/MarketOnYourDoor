@@ -17,19 +17,11 @@ struct ScrollableProductImageView: View {
                         Rectangle().foregroundColor(Color.black.opacity(0.5))
                     }
                         .scaledToFill()
-                        //.frame(width: 200, height: 200, alignment: .center)
                         .tag(num)
-                    /*
-                    Image("gofret\(num)")
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: 200, height: 200, alignment: .center)
-                        .tag(num)*/
                 }
             }
             .tabViewStyle(PageTabViewStyle())
                 .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
-            //.frame(width: 200, height: 200)
             
             .onAppear {
                 setupAppearance()

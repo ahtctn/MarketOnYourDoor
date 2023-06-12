@@ -12,16 +12,23 @@ struct BrandsView: View {
     
     var body: some View {
 
-        List {
-            ForEach(data.indices, id: \.self) { index in
-                if index % 2 == 0 {
-                    EvenRowView(companyModel: data[index])
-                } else {
-                    OddRowView(companyModel: data[index])
+        NavigationView {
+            List {
+                ForEach(data.indices, id: \.self) { index in
+                    NavigationLink(destination: BrandDetailView(companyModel: data[index])) {
+                        if index % 2 == 0 {
+                            EvenRowView(companyModel: data[index])
+                        } else {
+                            OddRowView(companyModel: data[index])
+                        }
+                    }
                 }
             }
+            .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0))
+            
+            
+            .navigationTitle("Markalar")
         }
-        .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0))
     }
 }
 

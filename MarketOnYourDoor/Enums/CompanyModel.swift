@@ -5,7 +5,6 @@
 //  Created by Ahmet Ali ÇETİN on 5.06.2023.
 //
 
-import Foundation
 import SwiftUI
 
 class CompanyModel: Identifiable {

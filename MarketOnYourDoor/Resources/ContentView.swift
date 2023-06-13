@@ -13,6 +13,7 @@ struct ContentView: View {
     @State private var selectedTab: EnumTab = .Home
     @State private var rotationValue: Double = 0.1
     @State private var showSideMenu: Bool = false
+    var companyModel: CompanyModel
     
     var sideMenuModel: SideMenuModel
     
@@ -41,7 +42,7 @@ struct ContentView: View {
                                 }
                                 .tag(EnumTab.Brands)
                             
-                            ProductsView()
+                            ProductsView(companyModel: companyModel)
                                 .navigationBarTitleDisplayMode(.inline)
                                 .navigationTitle("Basket")
                                 .tabItem {
@@ -134,7 +135,7 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(sideMenuModel: SideMenuModelList.mSideMenuModelList[0])
+        ContentView(companyModel: CompanyDataModelList.mList[0], sideMenuModel: SideMenuModelList.mSideMenuModelList[0])
     }
 }
 

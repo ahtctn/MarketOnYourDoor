@@ -109,7 +109,7 @@ struct AddToBasketButtomSheet: View {
 
 struct AddToBasketButtomSheet_Previews: PreviewProvider {
     static var previews: some View {
-        AddToBasketButtomSheet(rowItem: ProductModelList.mProductList[0])
+        AddToBasketButtomSheet(rowItem: ProductModel(img: UIImage(systemName: "person.fill")!, name: "lkj", description: "lkj", stockSituation: "lkj", rateStar: 34.2, rateCount: 2, oldPrice: 23.432, currentPrice: 234.432, brand: "gsfgd"))
             .previewLayout(.sizeThatFits)
             .padding()
     }

@@ -38,26 +38,26 @@ struct ProductCollectionViewCell: View {
                     ProductStarView()
                         .padding(.horizontal, 10)
                     
-                    Text("(1728)")
+                    Text(String(rowItem.rateCount))
                         .font(.system(size: 12))
                         .fontWeight(.thin)
                         .foregroundColor(.secondary)
                 }
                 
-                ExtraArgumentView()
+                ExtraArgumentView(rowItem: rowItem)
                     .padding(.horizontal, 10)
                 
                 HStack(spacing: 10) {
-                    Text("2000 ₺")
-                        .fontWeight(.medium)
-                        .foregroundColor(.secondary)
-                        .font(.system(size: 13))
-                        .padding(.horizontal, 10)
-                    Text("1000 ₺")
-                        .font(.system(size: 18))
-                        .fontWeight(.bold)
-                        .foregroundColor(Color.buttonBlueColor)
-                        .padding(.horizontal, 10)
+                    Text("\(rowItem.oldPrice!, specifier: "%.2f") ₺")
+                            .fontWeight(.medium)
+                            .foregroundColor(.secondary)
+                            .font(.system(size: 13))
+                            .padding(.horizontal, 10)
+                        Text("\(rowItem.currentPrice, specifier: "%.2f") ₺")
+                            .font(.system(size: 18))
+                            .fontWeight(.bold)
+                            .foregroundColor(Color.buttonBlueColor)
+                            .padding(.horizontal, 10)
                 }
                 
                 Button {
@@ -84,6 +84,12 @@ struct ProductCollectionViewCell: View {
 
 struct ProductCollectionViewCell_Previews: PreviewProvider {
     static var previews: some View {
-        ProductCollectionViewCell(rowItem: ProductModelList.mProductList[0])
+        ProductCollectionViewCell(rowItem: ProductModel(img: UIImage(systemName: "multiply.circle.fill")!,
+                                                        name: "KitKat",
+                                                        description: "Nestle ile lezzetin sınırlarını zorlayın!",
+                                                        stockSituation: "Son 3 Gün sınırlı sayıda",
+                                                        rateStar: 4.0, rateCount: 1000,
+                                                        oldPrice: 40, currentPrice: 35,
+                                                        brand: CompanyName.nestle.rawValue))
     }
 }

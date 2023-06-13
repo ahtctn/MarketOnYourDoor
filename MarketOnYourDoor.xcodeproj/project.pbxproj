@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7B1FBAA12A38B6F100D136A7 /* CompanyNameEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1FBAA02A38B6F100D136A7 /* CompanyNameEnums.swift */; };
 		7B4255E32A32091D00600024 /* SideMenuModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4255E22A32091D00600024 /* SideMenuModel.swift */; };
 		7B4255E72A32223300600024 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4255E62A32223300600024 /* DetailView.swift */; };
 		7B4255EA2A324F9300600024 /* launchScreenAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B4255E92A324F9300600024 /* launchScreenAnimation.json */; };
@@ -55,6 +56,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7B1FBAA02A38B6F100D136A7 /* CompanyNameEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyNameEnums.swift; sourceTree = "<group>"; };
 		7B4255E22A32091D00600024 /* SideMenuModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuModel.swift; sourceTree = "<group>"; };
 		7B4255E62A32223300600024 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		7B4255E92A324F9300600024 /* launchScreenAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = launchScreenAnimation.json; path = MarketOnYourDoor/launchScreenAnimation.json; sourceTree = SOURCE_ROOT; };
@@ -234,6 +236,7 @@
 				7B5D7B642A2E454E003A9C7B /* GeneralEnums.swift */,
 				7B8B22892A2EA61B001309EF /* UnitOfProductsEnum.swift */,
 				7B8729552A35FF7600E9D950 /* SideMenuEnums.swift */,
+				7B1FBAA02A38B6F100D136A7 /* CompanyNameEnums.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -446,6 +449,7 @@
 			files = (
 				7B5D7B572A2E4464003A9C7B /* CompanyViewCell.swift in Sources */,
 				7B8BEB6A2A374C6E00488265 /* ListsView.swift in Sources */,
+				7B1FBAA12A38B6F100D136A7 /* CompanyNameEnums.swift in Sources */,
 				7B5D7B552A2E4442003A9C7B /* CampaignViewCell.swift in Sources */,
 				7B8729542A34B0C800E9D950 /* SideMenuListProductsButton.swift in Sources */,
 				7B5D7B7D2A2E4671003A9C7B /* OpportunitiesRowView.swift in Sources */,

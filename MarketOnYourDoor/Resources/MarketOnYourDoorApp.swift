@@ -11,7 +11,7 @@ import SwiftUI
 struct MarketOnYourDoorApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView(sideMenuModel: SideMenuModelList.mSideMenuModelList[0])
+            ContentView(companyModel: CompanyDataModelList.mList[0], sideMenuModel: SideMenuModelList.mSideMenuModelList[0])
         }
     }
 }

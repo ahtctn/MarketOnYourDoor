@@ -88,7 +88,7 @@ struct HomeView: View {
                         
                     
                     ScrollView(.horizontal) {
-                        OpportunitiesRowView(mDataList: CompanyDataModelList.mList)
+                        OpportunitiesRowView(mDataList: ProductModelList.mProductList[3])
                     }.padding(.bottom, 10)
                 }
                 .background(Color.firsatlarBackgroundColor)

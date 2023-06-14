@@ -35,7 +35,7 @@ struct ProductCollectionViewCell: View {
                     .padding(.horizontal, 10)
                 
                 HStack(spacing: 10) {
-                    ProductStarView()
+                    ProductStarView(rowItem: rowItem)
                         .padding(.horizontal, 10)
                     
                     Text(String(rowItem.rateCount))

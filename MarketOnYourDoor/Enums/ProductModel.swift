@@ -30,6 +30,10 @@ class ProductModel: Identifiable {
         self.currentPrice = currentPrice
         self.brand = brand
     }
+    
+//    static func == (lhs: ProductModel, rhs: ProductModel) -> Bool {
+//        return lhs.id == rhs.id
+//    }
 }
 
 struct ProductModelList {

@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ProductCollectionViewCell: View {
     var rowItem: ProductModel
+    
+    //@State private var isSelected: Bool = false
     @State private var showingBottomSheet: Bool = false
     
     var body: some View {
@@ -34,11 +36,16 @@ struct ProductCollectionViewCell: View {
                     .fontWeight(.heavy)
                     .padding(.horizontal, 10)
                 
-                HStack(spacing: 10) {
+                HStack(alignment: .center, spacing: 10) {
                     ProductStarView(rowItem: rowItem)
                         .padding(.horizontal, 10)
                     
-                    Text(String(rowItem.rateCount))
+                    Text(String(rowItem.rateStar))
+                        .font(.system(size: 12))
+                        .fontWeight(.thin)
+                        .foregroundColor(.secondary)
+                    
+                    Text(String("(\(rowItem.rateCount))"))
                         .font(.system(size: 12))
                         .fontWeight(.thin)
                         .foregroundColor(.secondary)
@@ -47,17 +54,18 @@ struct ProductCollectionViewCell: View {
                 ExtraArgumentView(rowItem: rowItem)
                     .padding(.horizontal, 10)
                 
-                HStack(spacing: 10) {
+                HStack(alignment: .center, spacing: -10) {
                     Text("\(rowItem.oldPrice!, specifier: "%.2f") ₺")
-                            .fontWeight(.medium)
-                            .foregroundColor(.secondary)
-                            .font(.system(size: 13))
-                            .padding(.horizontal, 10)
-                        Text("\(rowItem.currentPrice, specifier: "%.2f") ₺")
-                            .font(.system(size: 18))
-                            .fontWeight(.bold)
-                            .foregroundColor(Color.buttonBlueColor)
-                            .padding(.horizontal, 10)
+                        .fontWeight(.medium)
+                        .foregroundColor(.secondary)
+                        .font(.system(size: 13))
+                        .padding(.horizontal, 10)
+                        .strikethrough()
+                    Text("\(rowItem.currentPrice, specifier: "%.2f") ₺")
+                        .font(.system(size: 18))
+                        .fontWeight(.bold)
+                        .foregroundColor(Color.buttonBlueColor)
+                        .padding(.horizontal, 10)
                 }
                 
                 Button {
@@ -69,6 +77,8 @@ struct ProductCollectionViewCell: View {
                 }
                 .sheet(isPresented: $showingBottomSheet) {
                     AddToBasketButtomSheet(rowItem: rowItem)
+                    
+                        //.environmentObject(addToBasketManager)
                         .presentationDetents([.medium])
                 }
                 
@@ -79,6 +89,13 @@ struct ProductCollectionViewCell: View {
             }
             .padding(20)
         }
+        
+//        if isSelected {
+//            ProductCollectionViewCell(rowItem: rowItem)
+//                .onTapGesture {
+//                    isSelected.toggle()
+//                }
+//        }
     }
 }
 
@@ -91,5 +108,6 @@ struct ProductCollectionViewCell_Previews: PreviewProvider {
                                                         rateStar: 4.0, rateCount: 1000,
                                                         oldPrice: 40, currentPrice: 35,
                                                         brand: CompanyName.nestle.rawValue))
+        //.environmentObject(AddToBasketManager())
     }
 }

@@ -7,9 +7,10 @@
 import SwiftUI
 import Lottie
 
+
 struct ContentView: View {
     /// View Properties
-    @State private var isLaunchScreenEnd: Bool = false
+    ///
     @State private var selectedTab: EnumTab = .Home
     @State private var rotationValue: Double = 0.1
     @State private var showSideMenu: Bool = false
@@ -20,126 +21,111 @@ struct ContentView: View {
     var sideMenuModel: SideMenuModel
     
     var body: some View {
-        VStack {
-            if self.isLaunchScreenEnd {
-                NavigationView {
-                    ZStack {
-                        TabView(selection: $selectedTab) {
-                            HomeView(mCompanyList: [CompanyModel]())
-                            
-                                .navigationBarTitleDisplayMode(.inline)
-                                .navigationTitle("Home")
-                                .tabItem {
-                                    Image(systemName: "house.fill")
-                                    Text("Keşfet")
-                                }
-                                .tag(EnumTab.Home)
-                            
-                            BrandsView()
-                                .navigationBarTitleDisplayMode(.inline)
-                                .navigationTitle("Brands")
-                                .tabItem {
-                                    Image(systemName: "briefcase")
-                                    Text("Markalar")
-                                }
-                                .tag(EnumTab.Brands)
-                            
-                            ProductsView(companyModel: companyModel)
-                                .navigationBarTitleDisplayMode(.inline)
-                                .navigationTitle("Basket")
-                                .tabItem {
-                                    Image(systemName: "basket")
-                                    Text("Sepetim")
-                                }
-                                .tag(EnumTab.Products)
-                            
-                            ListsView()
-                                .navigationBarTitleDisplayMode(.inline)
-                                .navigationTitle("Lists")
-                                .tabItem {
-                                    Image(systemName: "heart")
-                                    Text("Listelerim")
-                                }
-                                .tag(EnumTab.MyList)
-                            
-                            SettingsView()
-                                .navigationBarTitleDisplayMode(.inline)
-                                .navigationTitle("Settings")
-                                .tabItem {
-                                    Image(systemName: "gear")
-                                    Text("Ayarlar")
-                                }
-                                .tag(EnumTab.Settings)
-                            
-                            
+        NavigationView {
+            
+            ZStack {
+                TabView(selection: $selectedTab) {
+                    HomeView(mCompanyList: [CompanyModel]())
+                        .navigationBarTitleDisplayMode(.inline)
+                        .navigationTitle("Home")
+                        .tabItem {
+                            Image(systemName: "house.fill")
+                            Text("Keşfet")
                         }
-                        .background(Color.black)
-                        .accentColor(.black)
-                        .toolbar {
-                            ToolbarItemGroup(placement: .navigationBarLeading) {
-                                //MARK: SIDE MENU BUTTON
-                                Button {
-                                    print("side menu button")
-                                    showSideMenu.toggle()
-                                    
-                                } label: {
-                                    if showSideMenu {
-                                        Image(systemName: "xmark")
-                                            .tint(.white)
-                                    } else {
-                                        Image(systemName: "line.3.horizontal")
-                                            .tint(.white)
-                                        
-                                    }
-                                }
-                                AppLogoView()
-                            }
-                            
-                            ToolbarItemGroup(placement: .navigationBarTrailing) {
-                                //MARK: NOTIFICATION BUTTON
-                                Button {
-                                    print("right bar button item tapped")
-                                } label: {
-                                    Image(systemName: "bell")
-                                        .tint(.white)
-                                }
-                                //MARK: ACCOUNT BUTTON
-                                Button {
-                                    print("My account button tapped")
-                                    userAuth.isRegistered = false
-                                } label: {
-                                    NavigationLink(destination: SignupScreen(), isActive: $userAuth.isRegistered) {
-                                        Image(systemName: "person")
-                                            .tint(.white)
-                                    }
-                                    
-                                }
-                            }
+                        .tag(EnumTab.Home)
+                    
+                    BrandsView()
+                        .navigationBarTitleDisplayMode(.inline)
+                        .navigationTitle("Brands")
+                        .tabItem {
+                            Image(systemName: "briefcase")
+                            Text("Markalar")
                         }
-                        GeometryReader { _ in
-                            Spacer()
-                            SideMenuView(sideMenuModelRow: sideMenuModel)
-                                .offset(x: showSideMenu ? 0 : -UIScreen.main.bounds.width)
-                                .animation(.easeIn(duration: 0.3), value: showSideMenu)
-                            
+                        .tag(EnumTab.Brands)
+                    
+                    ProductsView(companyModel: companyModel)
+                        .navigationBarTitleDisplayMode(.inline)
+                        .navigationTitle("Basket")
+                        .tabItem {
+                            Image(systemName: "basket")
+                            Text("Sepetim")
                         }
-                        .background(Color.black.opacity(showSideMenu ? 0.55 : 0))
+                        .tag(EnumTab.Products)
+                    
+                    ListsView()
+                        .navigationBarTitleDisplayMode(.inline)
+                        .navigationTitle("Lists")
+                        .tabItem {
+                            Image(systemName: "heart")
+                            Text("Listelerim")
+                        }
+                        .tag(EnumTab.MyList)
+                    
+                    SettingsView()
+                        .navigationBarTitleDisplayMode(.inline)
+                        .navigationTitle("Settings")
+                        .tabItem {
+                            Image(systemName: "gear")
+                            Text("Ayarlar")
+                        }
+                        .tag(EnumTab.Settings)
+                }
+                .accentColor(.black)
+                
+                .background(Color.black)
+                .navigationBarHidden(false)
+                .navigationBarBackButtonHidden(false)
+                GeometryReader { _ in
+                    Spacer()
+                    SideMenuView(sideMenuModelRow: sideMenuModel)
+                        .offset(x: showSideMenu ? 0 : -UIScreen.main.bounds.width)
+                        .animation(.easeIn(duration: 0.3), value: showSideMenu)
+                    
+                }
+            }
+            .toolbar {
+                ToolbarItemGroup(placement: .navigationBarLeading) {
+                    //MARK: SIDE MENU BUTTON
+                    Button {
+                        print("side menu button")
+                        showSideMenu.toggle()
+                    } label: {
+                        if showSideMenu {
+                            Image(systemName: "xmark")
+                                .tint(.white)
+                        } else {
+                            Image(systemName: "line.3.horizontal")
+                                .tint(.white)
+                        }
+                    }
+                    AppLogoView()
+                }
+                ToolbarItemGroup(placement: .navigationBarTrailing) {
+                    //MARK: NOTIFICATION BUTTON
+                    Button {
+                        print("right bar button item tapped")
+                    } label: {
+                        Image(systemName: "bell")
+                            .tint(.white)
+                    }
+                    //MARK: ACCOUNT BUTTON
+                    Button {
+                        print("My account button tapped")
+                        userAuth.isRegistered = false
+                    } label: {
+                        NavigationLink(destination: SignupScreen(), isActive: $userAuth.isRegistered) {
+                            Image(systemName: "person")
+                                .tint(.white)
+                        }
                     }
                 }
-                .navigationBarHidden(true)
-                .navigationBarBackButtonHidden(true)
-            } else {
-                LootieAnimationView(name: "launchScreenAnimation", loopMode: .loop)
             }
-        } .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                withAnimation {
-                    self.isLaunchScreenEnd = true
-                }
-            }
+            
+            
         }
     }
 }
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
@@ -165,4 +151,3 @@ extension UINavigationController {
         navigationBar.scrollEdgeAppearance = scrollEdge
     }
 }
-

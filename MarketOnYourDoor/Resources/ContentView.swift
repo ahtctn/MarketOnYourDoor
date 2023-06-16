@@ -13,6 +13,8 @@ struct ContentView: View {
     @State private var selectedTab: EnumTab = .Home
     @State private var rotationValue: Double = 0.1
     @State private var showSideMenu: Bool = false
+    
+    @EnvironmentObject var userAuth: UserAuth
     var companyModel: CompanyModel
     
     var sideMenuModel: SideMenuModel
@@ -24,7 +26,7 @@ struct ContentView: View {
                     ZStack {
                         TabView(selection: $selectedTab) {
                             HomeView(mCompanyList: [CompanyModel]())
-                                
+                            
                                 .navigationBarTitleDisplayMode(.inline)
                                 .navigationTitle("Home")
                                 .tabItem {
@@ -104,9 +106,13 @@ struct ContentView: View {
                                 //MARK: ACCOUNT BUTTON
                                 Button {
                                     print("My account button tapped")
+                                    userAuth.isRegistered = false
                                 } label: {
-                                    Image(systemName: "person")
-                                        .tint(.white)
+                                    NavigationLink(destination: SignupScreen(), isActive: $userAuth.isRegistered) {
+                                        Image(systemName: "person")
+                                            .tint(.white)
+                                    }
+                                    
                                 }
                             }
                         }
@@ -120,6 +126,8 @@ struct ContentView: View {
                         .background(Color.black.opacity(showSideMenu ? 0.55 : 0))
                     }
                 }
+                .navigationBarHidden(true)
+                .navigationBarBackButtonHidden(true)
             } else {
                 LootieAnimationView(name: "launchScreenAnimation", loopMode: .loop)
             }
@@ -142,19 +150,19 @@ struct ContentView_Previews: PreviewProvider {
 extension UINavigationController {
     override open func viewDidLoad() {
         super.viewDidLoad()
-
-    let standard = UINavigationBarAppearance()
+        
+        let standard = UINavigationBarAppearance()
         standard.backgroundColor = UIColor(Color.themeColor) //When you scroll or you have title (small one)
-
-    let compact = UINavigationBarAppearance()
-    compact.backgroundColor = UIColor(Color.themeColor)  //compact-height
-
-    let scrollEdge = UINavigationBarAppearance()
-    scrollEdge.backgroundColor = UIColor(Color.themeColor)  //When you have large title
-
-    navigationBar.standardAppearance = standard
-    navigationBar.compactAppearance = compact
-    navigationBar.scrollEdgeAppearance = scrollEdge
- }
+        
+        let compact = UINavigationBarAppearance()
+        compact.backgroundColor = UIColor(Color.themeColor)  //compact-height
+        
+        let scrollEdge = UINavigationBarAppearance()
+        scrollEdge.backgroundColor = UIColor(Color.themeColor)  //When you have large title
+        
+        navigationBar.standardAppearance = standard
+        navigationBar.compactAppearance = compact
+        navigationBar.scrollEdgeAppearance = scrollEdge
+    }
 }
 

@@ -1,15 +1,13 @@
-//
-//  SignupScreen.swift
-//  MarketOnYourDoor
-//
-//  Created by Ahmet Ali ÇETİN on 15.06.2023.
-//
-
 import SwiftUI
 
 struct SignupScreen: View {
     @State private var email: String = ""
     @State private var password: String = ""
+    @StateObject private var userAuth = UserAuth()
+    @Environment(\.presentationMode) var presentationMode
+    @State private var isRegistered = false
+    @State private var isShowingRegisterScreen = false
+    
     var body: some View {
         ZStack {
             LootieAnimationView(name: "signupScreenBackgroundAnimation", loopMode: .loop)
@@ -34,21 +32,39 @@ struct SignupScreen: View {
                     TextFieldView(text: $password, placeholder: "Password", keyboardType: .default)
                         .textContentType(.password)
                 }
+                Spacer().frame(height: 50)
                 
-                
-                Button {
-                    
-                } label: {
+                Button(action: {
+                    // Handle signup logic here
+                    isRegistered = true
+                }) {
                     Text("Giriş Yap")
                         .font(.system(size: 30, weight: .bold, design: .default))
                         .foregroundColor(.white)
                 }
                 .buttonStyle(CustomButtonStyle())
-                .padding(.top, 50)
+                
+                Button {
+                    isShowingRegisterScreen = true
+                } label: {
+                    Text("Üye ol")
+                        .foregroundColor(Color.buttonBlueColor)
+                }
+                
+                
                 Spacer()
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
+        .fullScreenCover(isPresented: $isRegistered) {
+            ContentView(companyModel: CompanyDataModelList.mList[0], sideMenuModel: SideMenuModelList.mSideMenuModelList[0])
+        }
+        .fullScreenCover(isPresented: $isShowingRegisterScreen) {
+            RegisterScreen()
+        }
+        .environment(\.presentationMode, presentationMode)
+        .navigationBarHidden(true)
+        .navigationBarBackButtonHidden(true)
     }
 }
 

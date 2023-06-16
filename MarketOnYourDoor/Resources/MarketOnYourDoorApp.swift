@@ -9,9 +9,20 @@ import SwiftUI
 
 @main
 struct MarketOnYourDoorApp: App {
+    
+    @StateObject private var userAuth = UserAuth()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView(companyModel: CompanyDataModelList.mList[0], sideMenuModel: SideMenuModelList.mSideMenuModelList[0])
+            
+            if userAuth.isRegistered {
+                ContentView(companyModel: CompanyDataModelList.mList[0], sideMenuModel: SideMenuModelList.mSideMenuModelList[0])
+                    .environmentObject(userAuth)
+            } else {
+                RegisterScreen()
+                    .environmentObject(userAuth)
+            }
+            
         }
     }
 }

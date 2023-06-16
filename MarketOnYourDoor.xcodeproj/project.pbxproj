@@ -59,6 +59,8 @@
 		7B9227932A3B8EA600CA33F6 /* CustomButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9227922A3B8EA600CA33F6 /* CustomButtonView.swift */; };
 		7B9227952A3B925B00CA33F6 /* signupScreenBackgroundAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B9227942A3B925B00CA33F6 /* signupScreenBackgroundAnimation.json */; };
 		7B9227972A3B93B200CA33F6 /* registerScreenAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B9227962A3B93B200CA33F6 /* registerScreenAnimation.json */; };
+		7BCC02852A3C7F6F0039FB48 /* registirationSuccessful.json in Resources */ = {isa = PBXBuildFile; fileRef = 7BCC02842A3C7F6F0039FB48 /* registirationSuccessful.json */; };
+		7BCC02882A3C8EA60039FB48 /* UserAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCC02872A3C8EA60039FB48 /* UserAuth.swift */; };
 		7BDF9D1C2A2E4B2100434A2F /* AddToBasketButtomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDF9D1B2A2E4B2100434A2F /* AddToBasketButtomSheet.swift */; };
 /* End PBXBuildFile section */
 
@@ -115,6 +117,8 @@
 		7B9227922A3B8EA600CA33F6 /* CustomButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtonView.swift; sourceTree = "<group>"; };
 		7B9227942A3B925B00CA33F6 /* signupScreenBackgroundAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = signupScreenBackgroundAnimation.json; path = MarketOnYourDoor/signupScreenBackgroundAnimation.json; sourceTree = SOURCE_ROOT; };
 		7B9227962A3B93B200CA33F6 /* registerScreenAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = registerScreenAnimation.json; path = MarketOnYourDoor/registerScreenAnimation.json; sourceTree = SOURCE_ROOT; };
+		7BCC02842A3C7F6F0039FB48 /* registirationSuccessful.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = registirationSuccessful.json; path = MarketOnYourDoor/registirationSuccessful.json; sourceTree = SOURCE_ROOT; };
+		7BCC02872A3C8EA60039FB48 /* UserAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuth.swift; sourceTree = "<group>"; };
 		7BDF9D1B2A2E4B2100434A2F /* AddToBasketButtomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToBasketButtomSheet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -133,6 +137,7 @@
 		7B4255E82A324F8300600024 /* JSON_AnimationFiles */ = {
 			isa = PBXGroup;
 			children = (
+				7BCC02842A3C7F6F0039FB48 /* registirationSuccessful.json */,
 				7B9227962A3B93B200CA33F6 /* registerScreenAnimation.json */,
 				7B9227942A3B925B00CA33F6 /* signupScreenBackgroundAnimation.json */,
 				7B92278F2A3B8B2400CA33F6 /* signupAnimations.json */,
@@ -179,6 +184,7 @@
 		7B5D7B342A2E4293003A9C7B /* MarketOnYourDoor */ = {
 			isa = PBXGroup;
 			children = (
+				7BCC02862A3C8E980039FB48 /* Helpers */,
 				7B5D7B4D2A2E43BC003A9C7B /* Extensions */,
 				7B5D7B502A2E4400003A9C7B /* GeneralCells */,
 				7B5D7B632A2E453B003A9C7B /* Enums */,
@@ -404,6 +410,14 @@
 			path = CustomButtonView;
 			sourceTree = "<group>";
 		};
+		7BCC02862A3C8E980039FB48 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				7BCC02872A3C8EA60039FB48 /* UserAuth.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		7BDF9D1A2A2E4B0E00434A2F /* ButtomSheet */ = {
 			isa = PBXGroup;
 			children = (
@@ -483,6 +497,7 @@
 				7B9227952A3B925B00CA33F6 /* signupScreenBackgroundAnimation.json in Resources */,
 				7B9227972A3B93B200CA33F6 /* registerScreenAnimation.json in Resources */,
 				7B9227902A3B8B2400CA33F6 /* signupAnimations.json in Resources */,
+				7BCC02852A3C7F6F0039FB48 /* registirationSuccessful.json in Resources */,
 				7B4255EA2A324F9300600024 /* launchScreenAnimation.json in Resources */,
 				7B5D7B3A2A2E4294003A9C7B /* Assets.xcassets in Resources */,
 			);
@@ -495,6 +510,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7BCC02882A3C8EA60039FB48 /* UserAuth.swift in Sources */,
 				7B5D7B572A2E4464003A9C7B /* CompanyViewCell.swift in Sources */,
 				7B8BEB6A2A374C6E00488265 /* ListsView.swift in Sources */,
 				7B1FBAA12A38B6F100D136A7 /* CompanyNameEnums.swift in Sources */,

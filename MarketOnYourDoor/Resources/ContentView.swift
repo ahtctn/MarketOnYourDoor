@@ -16,10 +16,13 @@ struct ContentView: View {
     @State private var showSideMenu: Bool = false
     
     @EnvironmentObject var userAuth: UserAuth
-    var companyModel: CompanyModel
     
+    var companyModel: CompanyModel
     var sideMenuModel: SideMenuModel
     
+    @State private var lowestTextEntered: String = ""
+    @State private var highestTextEntered: String = ""
+    @State private var isTextFieldVisible: Bool = false
     var body: some View {
         NavigationView {
             
@@ -77,7 +80,7 @@ struct ContentView: View {
                 .navigationBarBackButtonHidden(false)
                 GeometryReader { _ in
                     Spacer()
-                    SideMenuView(sideMenuModelRow: sideMenuModel)
+                    SideMenuView(sideMenuModelRow: sideMenuModel, lowestTextEntered: $lowestTextEntered, highestTextEntered: $highestTextEntered, isTextFieldVisible: $isTextFieldVisible, companyModel: CompanyDataModelList.mList[0])
                         .offset(x: showSideMenu ? 0 : -UIScreen.main.bounds.width)
                         .animation(.easeIn(duration: 0.3), value: showSideMenu)
                     

@@ -19,7 +19,7 @@ struct SideMenuView: View {
     var body: some View {
         ZStack {
             List {
-                SideMenuContent(sideMenuModelRow: sideMenuModelRow, lowestTextEntered: $lowestTextEntered, highestTextEntered: $highestTextEntered, isTextFieldVisible: $isTextFieldVisible)
+                SideMenuContent(sideMenuModelRow: sideMenuModelRow)
             }
             .frame(minWidth: 300, maxWidth: 350)
             .background(.white)

@@ -13,17 +13,22 @@ struct SideMenuContent: View {
     @State private var isStockPickerVisible: Bool = false
     @State private var isStarredProductsPickerVisible: Bool = false
     
-    @Binding var lowestTextEntered: String
-    @Binding var highestTextEntered: String
-    @Binding var isTextFieldVisible: Bool
-    
     @State private var isProductGroupsVisible: Bool = false
-    @State private var isProductSupplementGroups: Bool = false
+    @State private var isProductSupplementGroupsVisible: Bool = false
     @State private var starText: String = ""
     let starPickerOptions = ["⭐️", "⭐️⭐️", "⭐️⭐️⭐️", "⭐️⭐️⭐️⭐️", "⭐️⭐️⭐️⭐️⭐️"]
     
+    @State private var productGroupsIndex: ProductGroup = .group1
+    @State private var productSupplementGroupsIndex: ProductSupplementGroup = .group2
+    @State private var starredProductPickerIndex: StarRating = .oneStar
+    @State private var lowestTextEntered: String = ""
+    @State private var highestTextEntered: String = ""
+    @State private var isTextFieldVisible: Bool = false
+ 
+    
+    
     var body: some View {
-        SideMenuHeaderTitles()
+        SideMenuHeaderTitles(productGroupsIndex: $productGroupsIndex, productSupplementGroupsIndex: $productSupplementGroupsIndex, starredProductPickerIndex: $starredProductPickerIndex, lowestTextEntered: $lowestTextEntered, highestTextEntered: $highestTextEntered, isStockStatusVisible: $isStockPickerVisible, isProductGroupsVisible: $isProductGroupsVisible, isProductSupplementGroupsVisible: $isProductSupplementGroupsVisible, isStarredProductPickerVisible: $isStarredProductsPickerVisible, isTextFieldVisible: $isTextFieldVisible)
         
         ForEach(SideMenuModelList.mSideMenuModelList.indices, id: \.self) { index in
             
@@ -39,7 +44,7 @@ struct SideMenuContent: View {
                     }
                 case 2:
                     withAnimation {
-                        isProductSupplementGroups.toggle()
+                        isProductSupplementGroupsVisible.toggle()
                     }
                 case 3:
                     withAnimation {
@@ -86,7 +91,7 @@ struct SideMenuContent: View {
                 ProductGroups()
             }
             
-            if index == 2 && isProductSupplementGroups {
+            if index == 2 && isProductSupplementGroupsVisible {
                 ProductSupplementGroups()
             }
             
@@ -187,6 +192,6 @@ struct SideMenuContent: View {
 
 struct SideMenuContent_Previews: PreviewProvider {
     static var previews: some View {
-        SideMenuContent(sideMenuModelRow: SideMenuModelList.mSideMenuModelList[0], lowestTextEntered: .constant("1000"), highestTextEntered: .constant("2000"), isTextFieldVisible: .constant(.random()))
+        SideMenuContent(sideMenuModelRow: SideMenuModelList.mSideMenuModelList[0])
     }
 }

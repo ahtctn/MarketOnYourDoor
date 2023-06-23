@@ -399,11 +399,11 @@
 		7B8E479D2A30B5B0003E59F1 /* SideMenuView */ = {
 			isa = PBXGroup;
 			children = (
-				7B5C45CA2A43754700600AFC /* Subviews */,
+				7B8729512A34B06800E9D950 /* SideMenuHeaderTitles.swift */,
 				7B8E479E2A30B5BB003E59F1 /* SideMenuView.swift */,
 				7B4255E62A32223300600024 /* DetailView.swift */,
+				7B5C45CA2A43754700600AFC /* Subviews */,
 				7B4255F72A33533200600024 /* SegmentedControlView.swift */,
-				7B8729512A34B06800E9D950 /* SideMenuHeaderTitles.swift */,
 				7B8729532A34B0C800E9D950 /* SideMenuListProductsButton.swift */,
 			);
 			path = SideMenuView;
